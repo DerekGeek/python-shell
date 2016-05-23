@@ -1,0 +1,732 @@
+show run
+Building configuration...
+
+Current configuration : 14787 bytes
+!
+! Last configuration change at 20:15:01 BJT Tue Apr 19 2016 by chenxufeng
+! NVRAM config last updated at 14:52:13 BJT Mon Mar 2 2015 by caiyikai
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec localtime
+service timestamps log datetime
+service password-encryption
+no service dhcp
+!
+hostname HQ-HQ-NB-10F-SWL2-FL-C3560-2
+!
+logging buffered 1000000 debugging
+enable password 7 06051F284F4D191006
+!
+username cpiccpic privilege 15 password 7 15111B0507293B2D2B
+aaa new-model
+aaa authentication login con none
+aaa authentication login vty group tacacs+ local
+aaa authentication enable default group tacacs+ enable
+ --More--         aaa authentication dot1x default group radius
+aaa authorization exec vty group tacacs+ if-authenticated local 
+aaa authorization commands 1 vty group tacacs+ 
+aaa authorization commands 15 vty group tacacs+ 
+aaa authorization network default group radius 
+aaa authorization network vty group tacacs+ 
+aaa accounting exec vty stop-only group tacacs+
+aaa accounting commands 15 vty stop-only group tacacs+
+aaa accounting network vty start-stop group tacacs+
+!
+aaa session-id common
+clock timezone BJT 8
+system mtu routing 1500
+vtp domain cpic
+vtp mode transparent
+ip subnet-zero
+no ip source-route
+no ip domain-lookup
+!
+!
+!
+!
+!
+ --More--         !
+dot1x system-auth-control
+dot1x guest-vlan supplicant
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause security-violation
+errdisable recovery cause channel-misconfig
+errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause gbic-invalid
+errdisable recovery cause l2ptguard
+errdisable recovery cause psecure-violation
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause unicast-flood
+errdisable recovery cause vmps
+errdisable recovery cause storm-control
+errdisable recovery cause inline-power
+errdisable recovery cause arp-inspection
+errdisable recovery cause loopback
+errdisable recovery interval 60
+no file verify auto
+ --More--         !
+spanning-tree mode mst
+spanning-tree loopguard default
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+spanning-tree mst configuration
+ name CPIC-HQHQ
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 7
+ name JITUAN-HR-TEMP
+!
+vlan 115 
+!
+vlan 116
+ name JITUAN-N16F36
+!
+vlan 117
+ name JITUAN-N17F27
+ --More--         !
+vlan 118
+ name JITUAN-N18F24
+!
+vlan 119
+ name JITUAN-N19F23
+!
+vlan 120
+ name JITUAN-N20F22
+!
+vlan 121
+ name JITUAN-N21F21
+!
+vlan 122
+ name JITUAN-N22F20
+!
+vlan 123
+ name JITUAN-N23F13
+!
+vlan 124
+ name JITUAN-N24F8
+!
+vlan 125
+ --More--          name JITUAN-N25F4
+!
+vlan 126
+ name JITUAN-N26F1
+!
+vlan 127
+ name JITUAN-NF23
+!
+vlan 137
+ name JITUAN-N37F37
+!
+vlan 140
+ name JITUAN-N40F40
+!
+vlan 141
+ name JITUAN-N41F41
+!
+vlan 148
+ name JITUAN-N48-DHCP
+!
+vlan 149
+ name JITUAN-N41
+!
+ --More--         vlan 170
+ name F23-TEMPHR
+!
+vlan 216
+ name SHOUXIAN-N16F30
+!
+vlan 217
+ name SHOUXIAN-N17F27
+!
+vlan 218
+ name SHOUXIAN-N18F24
+!
+vlan 219
+ name SHOUXIAN-N19F15
+!
+vlan 220
+ name SHOUXIAN-N20F11
+!
+vlan 221
+ name SHOUXIAN-N21F10
+!
+vlan 222
+ name SHOUXIAN-N22F9
+ --More--         !
+vlan 223
+ name SHOUXIAN-N23F1
+!
+vlan 224
+ name SHOUXIAN-N24F6
+!
+vlan 316
+ name CHANXIAN-N16F33
+!
+vlan 317
+ name CHANXIAN-N17F27
+!
+vlan 318
+ name CHANXIAN-N18F24
+!
+vlan 319
+ name CHANXIAN-N19F19
+!
+vlan 320
+ name CHANXIAN-N20F18
+!
+vlan 321
+ --More--          name CHANXIAN-N21F17
+!
+vlan 322
+ name CHANXIAN-N22F16
+!
+vlan 323
+ name CHANXIAN-N23F1
+!
+vlan 324
+ name CHANXIAN-N24F6
+!
+vlan 325
+ name CHANXIAN-N25F38
+!
+vlan 400
+ name Guest
+!
+vlan 401
+ name Guest-vlan
+!
+vlan 406
+ name JITUAN-PBXF6
+!
+ --More--         vlan 407
+ name JITUAN-PBXF7
+!
+vlan 408
+ name JITUAN-PBXF8
+!
+vlan 409
+ name JITUAN-PBXF9
+!
+vlan 410
+ name JITUAN-PBXF10
+!
+vlan 411
+ name JITUAN-PBXF11
+!
+vlan 413
+ name JITUAN-PBXF13
+!
+vlan 415
+ name JITUAN-PBXF15
+!
+vlan 416
+ name JITUAN-PBXF16
+ --More--         !
+vlan 417
+ name JITUAN-PBXF17
+!
+vlan 418
+ name JITUAN-PBXF18
+!
+vlan 419
+ name JITUAN-PBXF19
+!
+vlan 420
+ name JITUAN-PBXF20
+!
+vlan 421
+ name JITUAN-PBXF21
+!
+vlan 422
+ name JITUAN-PBXF22
+!
+vlan 423
+ name JITUAN-PBXF23
+!
+vlan 424
+ --More--          name JITUAN-PBXF24
+!
+vlan 427
+ name JITUAN-PBXF27
+!
+vlan 428
+ name JITUAN-PBXF28
+!
+vlan 429
+ name JITUAN-PBXF29
+!
+vlan 431
+ name JITUAN-PBXF31
+!
+vlan 437
+ name JITUAN-PBXF37
+!
+vlan 438
+ name JITUAN-PBXF38
+!
+vlan 440
+ name JITUAN-PBXF40
+!
+ --More--         vlan 441
+ name JITUAN-PBXF41
+!
+vlan 451
+ name JITUAN-PBXF51
+!
+vlan 600
+ name L2-MGE
+!
+vlan 603
+ name L2-MGE1
+!
+vlan 801
+ name connect-to-CS6506-1
+!
+vlan 802
+ name connect-to-CS6506-2
+!
+!
+interface FastEthernet0/1
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ --More--          switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ --More--          dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+ --More--         interface FastEthernet0/4
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/5
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ no cdp enable
+ --More--          spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/6
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/7
+ description to  ipphon
+ switchport access vlan 221
+ --More--          switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/8
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ --More--          dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/9
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ --More--         !
+interface FastEthernet0/10
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/11
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ --More--          dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/12
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ --More--          dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/13
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x timeout tx-period 15
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ --More--         !
+interface FastEthernet0/14
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/15
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ --More--          dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/16
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ --More--          dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/17
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/18
+ --More--          description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/19
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ --More--          dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/20
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/21
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ --More--          dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/22
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ --More--         !
+interface FastEthernet0/23
+ description to  ipphon
+ switchport access vlan 221
+ switchport mode access
+ switchport voice vlan 410
+ dot1x pae authenticator
+ dot1x port-control auto
+ dot1x host-mode multi-host
+ dot1x control-direction in
+ dot1x max-reauth-req 1
+ dot1x reauthentication
+ dot1x guest-vlan 401
+ dot1x auth-fail vlan 401
+ no cdp enable
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ --More--         !
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan600
+ ip address 10.202.7.188 255.255.255.0
+!
+ip default-gateway 10.202.7.254
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.202.7.254
+no ip http server
+ip http secure-server
+!
+ip tacacs source-interface Vlan600
+!
+logging trap debugging
+logging source-interface Vlan600
+logging 10.193.16.56
+logging 10.193.22.22
+logging 10.193.16.196
+snmp-server community cpic321 RO
+ --More--         snmp-server enable traps snmp authentication warmstart
+snmp-server enable traps entity
+snmp-server enable traps bgp
+snmp-server enable traps config
+snmp-server enable traps hsrp
+snmp-server enable traps rtr
+snmp ifmib ifindex persist
+tacacs-server host 10.193.16.61
+tacacs-server host 10.193.16.66
+tacacs-server directed-request
+tacacs-server key 7 11394B26413C2A2F
+radius-server host 10.200.0.23 auth-port 1645 acct-port 1646 key 7 11292E362F421B574B6B1A0512
+radius-server host 10.200.0.22 auth-port 1645 acct-port 1646 key 7 072F167F7659095E58533A2D3E
+radius-server source-ports 1645-1646
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 5 0
+line vty 0 4
+ --More--          exec-timeout 5 0
+ password 7 121A151E11081C0D29
+ authorization commands 1 vty
+ authorization commands 15 vty
+ authorization exec vty
+ accounting commands 15 vty
+ accounting exec vty
+ login authentication vty
+line vty 5 15
+ exec-timeout 5 0
+!
+ntp clock-period 36028645
+ntp source Vlan600
+ntp server 10.193.16.10 prefer
+ntp server 10.193.16.11
+end
+
+HQ-HQ-NB-10F-SWL2-FL-C3560-2#              
+HQ-HQ-NB-10F-SWL2-FL-C3560-2#
